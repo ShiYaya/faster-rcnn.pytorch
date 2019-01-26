@@ -3,6 +3,15 @@
 ## by yaya:
 **bug1：** mGPUs = True  在trainval_net.py中，当使用多个GPU时，会出现错误：RuntimeError: dimension specified as 0 but tensor has no dimensions
 - 解决办法：https://github.com/jwyang/faster-rcnn.pytorch/issues/226
+- detail: To clarify, add these lines just before returning the values in lib/model/faster_rcnn/faster_rcnn.py
+```
+if self.training:
+rpn_loss_cls = torch.unsqueeze(rpn_loss_cls, 0)
+rpn_loss_bbox = torch.unsqueeze(rpn_loss_bbox, 0)
+RCNN_loss_cls = torch.unsqueeze(RCNN_loss_cls, 0)
+RCNN_loss_bbox = torch.unsqueeze(RCNN_loss_bbox, 0)
+```
+it is placed in the self.training as it shouldn't be training these when testing / predicting. Additionally, the variable is set to 0 which can be seen a few lines above the code.</br>
 
 ## Introduction
 
