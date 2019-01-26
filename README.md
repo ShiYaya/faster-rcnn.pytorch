@@ -1,5 +1,9 @@
 # A *Faster* Pytorch Implementation of Faster R-CNN
 
+## by yaya:
+### mGPUs = True  在trainval_net.py中，当使用多个GPU时，会出现错误：RuntimeError: dimension specified as 0 but tensor has no dimensions
+- 解决办法：https://github.com/jwyang/faster-rcnn.pytorch/issues/226
+
 ## Introduction
 
 ### :boom: Good news! This repo supports pytorch-1.0 now!!! We borrowed some code and techniques from [maskrcnn-benchmark](https://github.com/facebookresearch/maskrcnn-benchmark). Just go to pytorch-1.0 branch!
